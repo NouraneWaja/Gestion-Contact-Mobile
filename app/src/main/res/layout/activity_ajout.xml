@@ -5,57 +5,97 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".Ajout">
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/baseline_perm_contact_calendar_24"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/tvajout"
-        style="@style/st_titre1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajout" />
+        android:text="Ajouter un contact"
+        android:textSize="36sp"
+        android:textColor="@color/black"
+        android:paddingBottom="30dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"/>
 
     <EditText
         android:id="@+id/ednom_ajout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="saisir votre nom"
-        android:inputType="text" />
+        android:hint="Saisir nom"
+        android:inputType="text"
+        android:background="@drawable/custom_edittext"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        android:drawablePadding="8dp"/>
 
     <EditText
         android:id="@+id/edpseudo_ajout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="saisir votre pseudo"
-        android:inputType="text" />
+        android:hint="Saisir pseudo"
+        android:inputType="text"
+        android:background="@drawable/custom_edittext"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        android:drawablePadding="8dp"/>
 
     <EditText
         android:id="@+id/edphone_ajout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="saisir votre num tel"
-        android:inputType="phone" />
+        android:hint="Saisir numéro de téléphone"
+        android:inputType="phone"
+        android:background="@drawable/custom_edittext"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        android:drawablePadding="8dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2"
+        android:layout_marginTop="20dp">
 
         <Button
             android:id="@+id/btnretour"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Quitter" />
+            android:text="Annuler"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/black"
+            android:padding="12dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"/>
 
         <Button
             android:id="@+id/btnsave"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Enregistrer" />
+            android:text="Enregistrer"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/black"
+            android:padding="12dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"/>
     </LinearLayout>
 </LinearLayout>

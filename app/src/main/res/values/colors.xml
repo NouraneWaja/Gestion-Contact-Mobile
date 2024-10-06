@@ -2,8 +2,5 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#00BCD4</color>
-    <color name="colorPrimaryDark">#2196F3</color>
-    <color name="colorAccent">#FF5722</color>
-    <color name="arreierplan">#CDDC39</color>
+    <color name="orange">#FF5722</color>
 </resources>

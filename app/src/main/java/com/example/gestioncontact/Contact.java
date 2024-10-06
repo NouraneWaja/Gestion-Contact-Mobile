@@ -1,18 +1,9 @@
 package com.example.gestioncontact;
 
 public class Contact {
-    private String nom;
-    private String pseudo;
-    private String phone;
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "nom='" + nom + '\'' +
-                ", pseudo='" + pseudo + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
+    String nom;
+    String pseudo;
+    String phone;
 
     public Contact(String nom, String pseudo, String phone) {
         this.nom = nom;
@@ -42,5 +33,14 @@ public class Contact {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                ", nom='" + nom + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

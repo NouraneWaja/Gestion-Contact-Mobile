@@ -1,6 +1,8 @@
 package com.example.gestioncontact;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,7 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Affiche extends AppCompatActivity {
 
-    ListView lv;
+    private ListView lv;
+    private ImageButton btnback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,5 +27,13 @@ public class Affiche extends AppCompatActivity {
         });
 
         lv=findViewById(R.id.lv);
+        btnback=findViewById(R.id.btn_back_aff);
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Affiche.this.finish();
+            }
+        });
     }
 }

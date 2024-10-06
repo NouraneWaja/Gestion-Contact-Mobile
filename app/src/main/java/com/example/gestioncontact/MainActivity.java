@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 String nom=ednom.getText().toString();//eli fi wosst el zone de saisie
                 String mp=edmp.getText().toString();
                 if(nom.equalsIgnoreCase("")&&mp.equals("")){
-                    //context:activitecourant=qui occupe l'ecran
+                    //context:activitecourant = qui occupe l'ecran
                     Intent i= new Intent(MainActivity.this,Accueil.class);
                     i.putExtra("USER",nom);
                     startActivity(i);

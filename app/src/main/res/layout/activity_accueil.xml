@@ -4,30 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/bg"
     tools:context=".Accueil">
 
+    <!-- Titre "Accueil" -->
     <TextView
         android:id="@+id/tvuser_acc"
-        style="@style/st_titre1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:paddingBottom="50dp"
         android:text="Accueil"
-        android:textCursorDrawable="?android:attr/textCursorDrawable" />
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingBottom="50dp"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"/>
 
+    <!-- Bouton Ajout -->
     <Button
         android:id="@+id/btnajout_acc"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Ajout" />
+        android:text="Ajouter un contact"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/orange"
+        android:elevation="4dp"
+        android:padding="15dp"
+        android:layout_gravity="center_horizontal" />
 
+    <!-- Bouton Affichage -->
     <Button
         android:id="@+id/btnaffiche_acc"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Affichage" />
+        android:text="Afficher les contacts"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:backgroundTint="@color/orange"
+        android:elevation="4dp"
+        android:padding="15dp"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
