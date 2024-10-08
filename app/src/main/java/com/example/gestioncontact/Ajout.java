@@ -49,8 +49,23 @@ public class Ajout extends AppCompatActivity {
                 String pseudo=edpseudo.getText().toString();
                 String phone=edphone.getText().toString();
 
+                //Accueil.data.add(new Contact(nom, pseudo, phone));
 
-               Toast.makeText(Ajout.this,"nom: "+nom+" pseudo: "+pseudo+" num_tel: "+phone,Toast.LENGTH_LONG).show();
+                ContactManager manager = new ContactManager(Ajout.this);
+                manager.ouvrir();
+
+                long result = manager.ajout(nom, pseudo, phone);
+
+                if (result != -1) {
+                    Toast.makeText(Ajout.this, "Contact ajouté avec succès", Toast.LENGTH_LONG).show();
+                    ednom.setText("");
+                    edpseudo.setText("");
+                    edphone.setText("");
+                } else {
+                    Toast.makeText(Ajout.this, "Échec de l'ajout", Toast.LENGTH_LONG).show();
+                }
+
+
             }
         });
     }

@@ -13,7 +13,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class Accueil extends AppCompatActivity {
+
+    static ArrayList<Contact> data=new ArrayList<Contact>();
 
     private TextView tvusername;
     private Button btnajout,btnaff;
