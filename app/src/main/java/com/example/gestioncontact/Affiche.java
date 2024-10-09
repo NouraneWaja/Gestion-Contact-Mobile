@@ -4,20 +4,18 @@ import static com.example.gestioncontact.Accueil.data;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Affiche extends AppCompatActivity {
 
-    private ListView lv;
+    private RecyclerView rv;
     private ImageButton btnback;
     private SearchView sv;
     @Override
@@ -25,24 +23,23 @@ public class Affiche extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_affiche);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         //list view
-        lv=findViewById(R.id.lv);
+        rv=findViewById(R.id.rv);
 
         ContactManager manager=new ContactManager(Affiche.this);
         manager.ouvrir();
 
         data=manager.getAllContacts();
 
-        //simple_list_item houwa simple textview
-        ArrayAdapter ad=new ArrayAdapter(Affiche.this, android.R.layout.simple_list_item_1,data);
-        lv.setAdapter(ad);
+        //MyContactAdapter ad=new MyContactAdapter(Affiche.this,data);
+        MyContactRecyclerAdapter ad=new MyContactRecyclerAdapter(Affiche.this, data);
+        rv.setAdapter(ad);
 
+        LinearLayoutManager manager1=new LinearLayoutManager(Affiche.this,LinearLayoutManager.VERTICAL,true);
+
+        GridLayoutManager manager2=new GridLayoutManager(Affiche.this,2,GridLayoutManager.VERTICAL,true);
+        rv.setLayoutManager(manager2);
 
         //btn back
         btnback=findViewById(R.id.btn_back_aff);
@@ -59,13 +56,12 @@ public class Affiche extends AppCompatActivity {
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // No action needed here
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                ad.getFilter().filter(newText);
+
                 return true;
             }
         });

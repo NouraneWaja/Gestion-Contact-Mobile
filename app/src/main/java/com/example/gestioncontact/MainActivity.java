@@ -1,9 +1,11 @@
 package com.example.gestioncontact;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,17 +23,18 @@ public class MainActivity extends AppCompatActivity {
     private Button btnval;
     private Button btnqte;
     TextView register;
+    private CheckBox btnconnecte;
+
+    // Pour SharedPreferences
+    SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);//mettre un fichir xml dans notre ecran
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
 
         //recuperation des composantes
         edmp=findViewById(R.id.edmdp_auth);//hethi el zone de saisie
@@ -39,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         btnval=findViewById(R.id.btnval_auth);
         btnqte=findViewById(R.id.btnqte_auth);
         register=findViewById(R.id.signupLink);
+        btnconnecte = findViewById(R.id.stay_connected);
+
+        // Initialiser SharedPreferences
+        sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        // Vérifier si l'utilisateur a coché "Rester connecté"
+        checkStayConnected();
 
         //ecouteur d'action
         btnqte.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         btnval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nom=ednom.getText().toString();//eli fi wosst el zone de saisie
-                String mp=edmp.getText().toString();
+                String nom = ednom.getText().toString();
+                String mp = edmp.getText().toString();
 
                 if (nom.isEmpty() || mp.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Veuillez entrer votre nom et mot de passe", Toast.LENGTH_SHORT).show();
@@ -65,7 +76,20 @@ public class MainActivity extends AppCompatActivity {
                 // Vérifier si l'utilisateur est inscrit
                 boolean estInscrit = userManager.verifierUtilisateur(nom, mp);
                 if (estInscrit) {
-                    // L'utilisateur est inscrit, passer à l'accueil
+                    // Si l'utilisateur est inscrit et "Rester connecté" est coché
+                    if (btnconnecte.isChecked()) {
+                        // Sauvegarder les informations dans SharedPreferences
+                        editor.putBoolean("stayConnected", true);
+                        editor.putString("username", nom);
+                        editor.putString("password", mp);
+                        editor.apply();
+                    } else {
+                        // Effacer les informations de connexion si "Rester connecté" n'est pas coché
+                        editor.clear();
+                        editor.apply();
+                    }
+
+                    // Passer à l'accueil
                     Intent i = new Intent(MainActivity.this, Accueil.class);
                     i.putExtra("USER", nom);
                     startActivity(i);
@@ -84,5 +108,21 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish();
             }
         });
+
+    }
+
+    // Méthode pour vérifier si "Rester connecté" est activé
+    private void checkStayConnected() {
+        // Récupérer la valeur du booléen "stayConnected"
+        boolean stayConnected = sharedPreferences.getBoolean("stayConnected", false);
+        if (stayConnected) {
+            // Si l'utilisateur a coché "Rester connecté", récupérer les informations sauvegardées
+            String savedUsername = sharedPreferences.getString("username", "");
+            // Passer automatiquement à l'accueil
+            Intent i = new Intent(MainActivity.this, Accueil.class);
+            i.putExtra("USER", savedUsername);
+            startActivity(i);
+            finish();
+        }
     }
 }
