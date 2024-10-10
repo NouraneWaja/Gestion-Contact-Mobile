@@ -24,7 +24,7 @@ public class Affiche extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_affiche);
 
-        //list view
+        //recycle view
         rv=findViewById(R.id.rv);
 
         ContactManager manager=new ContactManager(Affiche.this);
@@ -36,10 +36,10 @@ public class Affiche extends AppCompatActivity {
         MyContactRecyclerAdapter ad=new MyContactRecyclerAdapter(Affiche.this, data);
         rv.setAdapter(ad);
 
-        LinearLayoutManager manager1=new LinearLayoutManager(Affiche.this,LinearLayoutManager.VERTICAL,true);
+        LinearLayoutManager manager1=new LinearLayoutManager(Affiche.this,LinearLayoutManager.VERTICAL,false);
+        //GridLayoutManager manager2=new GridLayoutManager(Affiche.this,2,GridLayoutManager.VERTICAL,true);
 
-        GridLayoutManager manager2=new GridLayoutManager(Affiche.this,2,GridLayoutManager.VERTICAL,true);
-        rv.setLayoutManager(manager2);
+        rv.setLayoutManager(manager1);
 
         //btn back
         btnback=findViewById(R.id.btn_back_aff);
@@ -61,7 +61,7 @@ public class Affiche extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
+                ad.filter(newText);
                 return true;
             }
         });

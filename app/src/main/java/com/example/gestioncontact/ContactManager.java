@@ -50,9 +50,21 @@ public class ContactManager {
         return l;
     }
 
-    //supprimer des elts de la bdd
-    public void supprimer(){
+    // Méthode pour mettre à jour un contact
+    public int updateContact( String pseudo,String nom, String phone) {
+        ContentValues values = new ContentValues();
+        values.put(ContactHelper.col_nom, nom);
+        values.put(ContactHelper.col_phone, phone);
 
+        // Mise à jour de la base de données
+        return db.update(ContactHelper.table_contact, values,
+                ContactHelper.col_pseudo + " = ?", new String[]{pseudo});
+    }
+
+    //supprimer des elts de la bdd
+    public void supprimer(String pseudo){
+        db.delete(ContactHelper.table_contact,
+                ContactHelper.col_pseudo + " = ?", new String[]{pseudo});
     }
 
     //fermer la bdd

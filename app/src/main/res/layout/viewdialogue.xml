@@ -1,23 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
+    <!-- Centrer le titre dans l'AlertDialog -->
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name" />
+        android:text="Édition du contact"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:paddingBottom="16dp" />
 
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="wrap_content"
+    <!-- Ligne pour Pseudo (TextView + EditText) -->
+
+    <!-- Ligne pour Nom (TextView + EditText) -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nom :           "
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edit_nom"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@android:color/white"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Ligne pour Téléphone (TextView + EditText) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Téléphone :"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/edit_telephone"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@android:color/white"
+            android:inputType="phone"
+            android:padding="8dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/black"
+            android:text="Annuler"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Enregistrer"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
 </LinearLayout>
