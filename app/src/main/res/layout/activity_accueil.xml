@@ -43,7 +43,8 @@
             android:padding="15dp"
             android:text="Ajouter un contact"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:cornerRadius="5dp" />
 
         <Button
             android:id="@+id/btnaffiche_acc"
@@ -55,7 +56,8 @@
             android:padding="15dp"
             android:text="Afficher les contacts"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:cornerRadius="5dp" />
     </LinearLayout>
 
     <!-- Se déconnecter en bas -->
@@ -72,6 +74,6 @@
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
         android:text="Se déconnecter"
-        android:textColor="#464545"
+        android:textColor="#595858"
         android:textSize="16sp" />
 </LinearLayout>

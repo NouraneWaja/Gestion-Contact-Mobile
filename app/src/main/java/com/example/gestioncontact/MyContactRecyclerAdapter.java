@@ -1,5 +1,6 @@
 package com.example.gestioncontact;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -144,17 +146,17 @@ public class MyContactRecyclerAdapter extends RecyclerView.Adapter<MyContactRecy
             imcall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Récupérer la position de l'élément cliqué
+                    // Récupérer la position de l'élément cliqué 
                     int position = getAdapterPosition();
 
                     // Vérifier si la permission d'appeler est accordée
-                  /*  if (ContextCompat.checkSelfPermission(con, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(con, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                         // Si la permission est accordée, lancer l'appel
                         call(data.get(position).phone);
                     } else {
                         // Si la permission n'est pas accordée, la demander
                         ActivityCompat.requestPermissions((Activity) con, new String[]{Manifest.permission.CALL_PHONE}, 1);
-                    }*/
+                    }
                 }
             });
 
@@ -195,19 +197,29 @@ public class MyContactRecyclerAdapter extends RecyclerView.Adapter<MyContactRecy
                             String nouveauNom = editNom.getText().toString();
                             String nouveauPhone = editTelephone.getText().toString();
 
-                            // Mettre à jour les informations dans la base de données
+                            // Vérifier si le numéro de téléphone existe déjà
                             ContactManager contactManager = new ContactManager(con);
                             contactManager.ouvrir();
-                            contactManager.updateContact(contact.pseudo,nouveauNom, nouveauPhone);
+                            boolean phoneExists = contactManager.isPhoneNumberExists(nouveauPhone);
                             contactManager.fermer();
 
-                            // Mettre à jour les données locales et rafraîchir l'affichage
-                            contact.nom = nouveauNom;
-                            contact.phone = nouveauPhone;
-                            notifyDataSetChanged();
+                            if (phoneExists && !nouveauPhone.equals(contact.phone)) {
+                                // Afficher un message d'erreur
+                                Toast.makeText(con, "Ce numéro de téléphone existe déjà.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Mettre à jour les informations dans la base de données
+                                contactManager.ouvrir();
+                                contactManager.updateContact(contact.pseudo, nouveauNom, nouveauPhone);
+                                contactManager.fermer();
 
-                            // Fermer la boîte de dialogue
-                            alertDialog.dismiss();
+                                // Mettre à jour les données locales et rafraîchir l'affichage
+                                contact.nom = nouveauNom;
+                                contact.phone = nouveauPhone;
+                                notifyDataSetChanged();
+
+                                // Fermer la boîte de dialogue
+                                alertDialog.dismiss();
+                            }
                         }
                     });
                     //bouton Annuler
@@ -225,26 +237,24 @@ public class MyContactRecyclerAdapter extends RecyclerView.Adapter<MyContactRecy
 
         }
 
-        /*private void call(String phoneNumber) {
+        private void call(String phoneNumber) {
             Intent intent = new Intent(Intent.ACTION_CALL);
             intent.setData(Uri.parse("tel:" + phoneNumber));
 
-            // Vérifier une dernière fois si la permission est accordée
+            // Vérifier une dernière fois si la permission est accordée avant de lancer l'appel
             if (ActivityCompat.checkSelfPermission(con, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                 con.startActivity(intent);
             }
         }
 
-        @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             if (requestCode == 1) {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Si la permission est accordée, relancer l'appel
                     int position = getAdapterPosition();
                     call(data.get(position).phone);
                 }
             }
-        }*/
+        }
 
     }
 }

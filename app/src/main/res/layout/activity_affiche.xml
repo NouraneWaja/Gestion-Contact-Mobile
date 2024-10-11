@@ -10,11 +10,10 @@
     android:fitsSystemWindows="true"
     tools:context=".Affiche">
 
-    <!-- Barre de titre avec flèche de retour -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FBD593"
+        android:background="#F5F5F5"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="9dp"

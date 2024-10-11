@@ -73,4 +73,16 @@ public class ContactManager {
             db.close(); // Ferme la connexion à la base de données
         }
     }
+
+    public boolean isPhoneNumberExists(String phone) {
+        Cursor cursor = db.query(ContactHelper.table_contact,
+                new String[]{ContactHelper.col_phone},
+                ContactHelper.col_phone + " = ?", new String[]{phone},
+                null, null, null);
+
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        return exists;
+    }
+
 }

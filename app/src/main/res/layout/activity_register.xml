@@ -80,28 +80,28 @@
                     android:id="@+id/btnqte_reg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    android:padding="10dp"
                     android:text="Quitter"
                     android:textColor="@android:color/white"
-                    android:padding="10dp"
                     android:textSize="18sp"
-                    android:layout_marginTop="30dp"
-                    android:backgroundTint="@color/black"
-                    app:cornerRadius = "20dp"/>
+                    app:cornerRadius="5dp" />
 
                 <Button
                     android:id="@+id/btnval_reg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="30dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    android:padding="10dp"
                     android:text="Créer"
                     android:textColor="@android:color/white"
-                    android:layout_marginStart="16dp"
-                    android:padding="10dp"
                     android:textSize="18sp"
-                    android:layout_marginTop="30dp"
-                    android:backgroundTint="@color/black"
-                    app:cornerRadius = "20dp"/>
+                    app:cornerRadius="5dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
